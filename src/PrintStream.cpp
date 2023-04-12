@@ -137,26 +137,6 @@ Print &operator<<(Print &printer, bool b) {
     return printer;
 }
 
-template <class T>
-Print &printIntegral(Print &printer, T i) {
-    switch (formatPrintStream)
-    {
-    case DEC:
-        printer.print(i);
-        break;
-    case HEX:
-        printHex(printer, i);
-        break;
-    case BIN:
-        printBin(printer, i);  
-        break;
-    /* case OCT:
-        printOct(printer, i);  
-        break; */
-    }
-    return printer;
-}
-
 Print &operator<<(Print &printer, manipulator pf) {
   return pf(printer);
 }
@@ -235,6 +215,26 @@ void printBin(Print &printer, T val)
         if (byteSeparatorPrintStream && i && (leadingZerosPrintStream || nonZero))
             printer.print(byteSeparatorPrintStream);
     }
+}
+
+template <class T>
+Print &printIntegral(Print &printer, T i) {
+    switch (formatPrintStream)
+    {
+    case DEC:
+        printer.print(i);
+        break;
+    case HEX:
+        printHex(printer, i);
+        break;
+    case BIN:
+        printBin(printer, i);  
+        break;
+    /* case OCT:
+        printOct(printer, i);  
+        break; */
+    }
+    return printer;
 }
 
 
